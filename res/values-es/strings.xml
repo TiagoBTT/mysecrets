@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">"My Secrets"</string>
+    <string name="edFilterHint">"Escriba el texto del filtro"</string>
+    <string name="buFilterText">"Filtro"</string>
+    <string name="error_nothing_found">"No he encontrado nada!"</string>
+    <string name="error_information">"Información del error"</string>
+    <string name="about_menu">"Sobre esta aplicación"</string>
+    <string name="more_info_text">"Esta aplicación &lt;b&gt;NUNCA&lt;/ b&gt; revelará sus secretos a nadie. Por favor envíeme un correo electrónico a la dirección &lt;a tiago.ameller href=\"mailto:tiago.ameller@gmail.com?Subject=MySecrets\"&gt; tiago.ameller@gmail.com &lt;/ a&gt; para obtener información"</string>
+    <string name="forgot_password">"Si usted olvida su contraseña, le puedo ofrecer una solución. Por favor envíeme un correo electrónico a la dirección &lt;a tiago.ameller href=\"mailto:tiago.ameller@gmail.com?Subject=MySecrets\"&gt;tiago.ameller@gmail.com&lt;/ a&gt; si usted pierde su clave principal."</string>
+
+    <string-array name="categories">
+        <item>"Personal"</item>
+        <item>"Bancos"</item>
+        <item>"Compras"</item>
+        <item>"Profesional"</item>
+        <item>"Educación"</item>
+        <item>"Varios"</item>
+    </string-array>
+    <string-array name="show_categories">
+        <item>"Haga clic para filtrar por categoría"</item>
+        <item>"Personal"</item>
+        <item>"Bancos"</item>
+        <item>"Compras"</item>
+        <item>"Profesional"</item>
+        <item>"Educación"</item>
+        <item>"Varios"</item>
+    </string-array>
+    <string-array name="imp_exp_sep_descriptions">
+        <item>"Coma"</item>
+        <item>"Punto y coma"</item>
+        <item>"Tabulador"</item>
+        <item>"Barra vertical"</item>
+    </string-array>
+    <string-array name="imp_exp_seps">
+        <item>","</item>
+        <item>";"</item>
+        <item>"\t"</item>
+        <item>"|"</item>
+    </string-array>
+
+    <string name="pref_ask_for_main_key">"Solicitar una contraseña principal"</string>
+    <string name="pref_summary_ask_key">"Solicitar una contraseña para acceder a MySecrets"</string>
+    <string name="pref_app_main_key">"Contraseña principal de la aplicación"</string>
+    <string name="pref_sort_by_name">"Ordenar por nombre"</string>
+    <string name="pref_summary_sort_by_name">"Ordenar los secretos por nombre"</string>
+    <string name="pref_separators">"Separador utilizado en los archivos CSV"</string>
+    <string name="pref_separator_for_exports">"Separador para las exportaciones"</string>
+    <string name="pref_separator_used">"Separador utilizado en los archivos importados / exportados"</string>
+    <string name="import_export_help">"Use la importación para añadir sus secretos existentes de forma automática. Sólo se necesita un archivo. CSV &lt;br&gt; Estos archivos se generan fácilmente con una hoja de cálculo como MS-Excel. En este caso, los 6 campos por línea son obligatorios: &lt;b&gt;Nombre, url, usuario, contraseña, nota y categoría de &lt;/ b&gt; &lt;br&gt; Intente exportar algunos de los secretos y ver el archivo exportado generado como guía."</string>
+    <string name="short_secret_description">descripción breve</string>
+    <string name="go_">Ir …</string>
+    <string name="memo">Comentario</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Ok</string>
+    <string name="password">Contraseña</string>
+    <string name="web_site_or_email_address">dirección web o email</string>
+    <string name="user">Usuario</string>
+    <string name="welcome_to_mysecrets_please_enter_your_password">Bienvenido a MySecrets. Por favor, entra tu contraseña</string>
+    <string name="export_secrets_to_sd_card">Exportar secretos a tarjeta SD</string>
+    <string name="import_secrets_from_sd_card">Importar secretos desde tarjeta SD</string>
+    <string name="clear">Borrar</string>
+    <string name="describe_your_secret">Describe tu secreto</string>
+    <string name="preferences">Configuración</string>
+    <string name="import_export">Importar/Exportar</string>
+    <string name="delete">Borrar</string>
+    <string name="edit">Modificar</string>
+    <string name="action_with_selected_item">Acción con elemento activo</string>
+    <string name="add">Añadir</string>
+    <string name="confirm_deletion_">¿Confirma el borrado?</string>
+    <string name="warning">¡Cuidado!</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="_d_found">%d secretos</string>
+    <string name="set_a_password_to_access_to_mysecrets">Indicar una contraseña para acceder a MySecrets</string>
+    <string name="enter_main_password">Entrar contraseña principal</string>
+    <string name="set_a_password_to_acces_to_mysecrets">Contraseña para acceder a MySecrets</string>
+    <string name="other">Otros</string>
+
+</resources>

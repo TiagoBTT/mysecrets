@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Secrets</string>
+    <string name="edFilterHint">Enter filter text</string>
+    <string name="buFilterText">Filter</string>
+    <string name="error_nothing_found">Nothing found!</string>
+    <string name="error_information">Error information</string>
+    <string name="about_menu">About this application</string>
+    <string name="more_info_text">This application
+		&lt;b>NEVER&lt;/b> will reveal your secrets to anybody. Please email me at &lt;a href="mailto:tiago.ameller@gmail.com?Subject=MySecrets">
+tiago.ameller@gmail.com&lt;/a> for feedback</string>
+    <string name="forgot_password">"If you forget your password, I can provide to you a solution. Please email me at &lt;a href="mailto:tiago.ameller@gmail.com?Subject=MySecrets">tiago.ameller@gmail.com&lt;/a> if you lose your main key."</string>
+
+    <string-array name="categories">
+        <item>Personal</item>
+        <item>Banking</item>
+        <item>Shopping</item>
+        <item>Professional</item>
+        <item>Learning</item>
+        <item>Misc</item>
+    </string-array>
+    <string-array name="show_categories">
+        <item>Click to filter by category</item>
+        <item>Personal</item>
+        <item>Banking</item>
+        <item>Shopping</item>
+        <item>Professional</item>
+        <item>Learning</item>
+        <item>Misc</item>
+    </string-array>
+    <string-array name="imp_exp_sep_descriptions">
+        <item>Comma</item>
+        <item>Semicolon</item>
+        <item>Tabulator</item>
+        <item>Pipping</item>
+    </string-array>
+    <string-array name="imp_exp_seps">
+        <item>,</item>
+        <item>;</item>
+        <item>\t</item>
+        <item>|</item>
+    </string-array>
+
+    <string name="pref_ask_for_main_key">Ask for a main password</string>
+    <string name="pref_summary_ask_key">Ask for a password to access MySecrets</string>
+    <string name="pref_app_main_key">Application main password</string>
+    <string name="pref_sort_by_name">Sort by name</string>
+    <string name="pref_summary_sort_by_name">Sort secrets by their name</string>
+    <string name="pref_separators">Separator used in CSV files</string>
+    <string name="pref_separator_for_exports">Separator for exports</string>
+    <string name="pref_separator_used">Separator used in imported / exported files</string>
+    <string name="import_export_help">Use import to add your existing secrets automatically. You only need a .csv file.&lt;br>Comma Separated Values files are easily generated with an spreadsheet like MS-Excel. In this case 6 fields per line are mandatory: &lt;b>name, url, user, passw, memo&lt;/b> and &lt;b>category&lt;/b>.&lt;br>Try to export some secrets and see the exported file as a guideline.</string>
+    <string name="short_secret_description">short secret description</string>
+    <string name="go_">Go …</string>
+    <string name="memo">Memo</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="password">Password</string>
+    <string name="web_site_or_email_address">web site or email address</string>
+    <string name="user">User</string>
+    <string name="welcome_to_mysecrets_please_enter_your_password">Welcome to MySecrets. Please enter your password</string>
+    <string name="export_secrets_to_sd_card">Export secrets to SD card</string>
+    <string name="import_secrets_from_sd_card">Import secrets from SD card</string>
+    <string name="clear">Clear</string>
+    <string name="describe_your_secret">Describe your secret</string>
+    <string name="preferences">Preferences</string>
+    <string name="import_export">Import/export</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="action_with_selected_item">Action with selected item</string>
+    <string name="add">Add</string>
+    <string name="confirm_deletion_">Confirm deletion?</string>
+    <string name="warning">Warning</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="_d_found">%d found</string>
+    <string name="set_a_password_to_access_to_mysecrets">Set a password to access to MySecrets</string>
+    <string name="enter_main_password">Enter main password</string>
+    <string name="set_a_password_to_acces_to_mysecrets">Set a password to acces to MySecrets</string>
+    <string name="other">Other</string>
+    <string name="nnew">New</string>
+    <string name="select">Select</string>
+    <string name="file_name">File name:</string>
+    <string name="create">Save</string>
+    <string name="no_data">No Data</string>
+    <string name="cant_read_folder">folder can\'t be read!</string>
+    <string name="location">Location</string>
+    <color name="gray">#ffff0000</color>
+    
+</resources>
