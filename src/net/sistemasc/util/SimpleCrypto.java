@@ -1,95 +1,124 @@
 package net.sistemasc.util;
 
-import java.security.SecureRandom;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.AlgorithmParameterSpec;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.PBEParameterSpec;
 
-/**
- * Usage: String crypto = SimpleCrypto.encrypt(cleartext) ...
- * String cleartext = SimpleCrypto.decrypt(crypto)
- * 
- * @author ferenc.hechler
- */
 public class SimpleCrypto {
-  private KeyGenerator kgen;
-  private SecureRandom sr;
-  private SecretKey skey;
-  private byte[] rawKey;
-  private static Cipher cipherE;
-  private static Cipher cipherD;
 
-  public SimpleCrypto(String _seed) throws Exception {
-    // init fields for best performance
-    kgen = KeyGenerator.getInstance("AES");
-    sr = SecureRandom.getInstance("SHA1PRNG");
-    sr.setSeed(_seed.getBytes());
-    kgen.init(128, sr); // 192 and 256 bits may not be available
-    skey = kgen.generateKey();
-    rawKey = skey.getEncoded();
-    SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
-    cipherE = Cipher.getInstance("AES");
-    cipherE.init(Cipher.ENCRYPT_MODE, skeySpec);
-    cipherD = Cipher.getInstance("AES");
-    cipherD.init(Cipher.DECRYPT_MODE, skeySpec);
-  }
+	Cipher ecipher;
+	Cipher dcipher;
 
-  /**
-   * Clear to encrypted text
-   * 
-   * @param cleartext
-   * @return clear text
-   * @throws Exception
-   */
-  public String encrypt(String _cleartext) throws Exception {
-    byte[] encrypted = cipherE.doFinal(_cleartext.getBytes());
-    return toHex(encrypted);
-  }
+	public SimpleCrypto(String password) {
 
-  /**
-   * Encrypted to clear text
-   * 
-   * @param seed
-   * @param encrypted
-   * @return
-   * @throws Exception
-   */
-  public String decrypt(String _encrypted) throws Exception {
-    byte[] decrypted = cipherD.doFinal(toByte(_encrypted));
-    return new String(decrypted);
-  }
+		// 8-bytes Salt
+		byte[] salt = { (byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32,
+				(byte) 0x56, (byte) 0x34, (byte) 0xE3, (byte) 0x03 };
 
-  public static String toHex(String txt) {
-    return toHex(txt.getBytes());
-  }
+		// Iteration count
+		int iterationCount = 19;
 
-  public static String fromHex(String hex) {
-    return new String(toByte(hex));
-  }
+		try {
 
-  public static byte[] toByte(String hexString) {
-    int len = hexString.length() / 2;
-    byte[] result = new byte[len];
-    for (int i = 0; i < len; i++)
-      result[i] = Integer.valueOf(hexString.substring(2 * i, 2 * i + 2), 16)
-          .byteValue();
-    return result;
-  }
+			KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt,
+					iterationCount);
+			SecretKey key = SecretKeyFactory.getInstance("PBEWithMD5AndDES")
+					.generateSecret(keySpec);
 
-  public static String toHex(byte[] buf) {
-    if (buf == null)
-      return "";
-    StringBuffer result = new StringBuffer(2 * buf.length);
-    for (int i = 0; i < buf.length; i++) {
-      appendHex(result, buf[i]);
-    }
-    return result.toString();
-  }
+			ecipher = Cipher.getInstance(key.getAlgorithm());
+			dcipher = Cipher.getInstance(key.getAlgorithm());
 
-  private static void appendHex(StringBuffer sb, byte b) {
-    final String HEX = "0123456789ABCDEF";
-    sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
-  }
+			// Prepare the parameters to the cipthers
+			AlgorithmParameterSpec paramSpec = new PBEParameterSpec(salt,
+					iterationCount);
 
+			ecipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
+			dcipher.init(Cipher.DECRYPT_MODE, key, paramSpec);
+
+		} catch (InvalidAlgorithmParameterException e) {
+			System.out.println("EXCEPTION: InvalidAlgorithmParameterException");
+		} catch (InvalidKeySpecException e) {
+			System.out.println("EXCEPTION: InvalidKeySpecException");
+		} catch (NoSuchPaddingException e) {
+			System.out.println("EXCEPTION: NoSuchPaddingException");
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("EXCEPTION: NoSuchAlgorithmException");
+		} catch (InvalidKeyException e) {
+			System.out.println("EXCEPTION: InvalidKeyException");
+		}
+	}
+
+	/**
+	 * Takes a single String as an argument and returns an Encrypted version of
+	 * that String.
+	 * 
+	 * @param str
+	 *            String to be encrypted
+	 * @return <code>String</code> Encrypted version of the provided String
+	 */
+	public String encrypt(String str) {
+		try {
+			// Encode the string into bytes using utf-8
+			byte[] utf8 = str.getBytes("UTF8");
+
+			// Encrypt
+			byte[] enc = ecipher.doFinal(utf8);
+
+			// Encode bytes to base64 to get a string
+			return Base64.encodeBytes(enc);
+			
+		} catch (BadPaddingException e) {
+		} catch (IllegalBlockSizeException e) {
+		} catch (UnsupportedEncodingException e) {
+		}
+		return null;
+	}
+
+	/**
+	 * Takes a encrypted String as an argument, decrypts and returns the
+	 * decrypted String.
+	 * 
+	 * @param str
+	 *            Encrypted String to be decrypted
+	 * @return <code>String</code> Decrypted version of the provided String
+	 */
+	public String decrypt(String enc) {
+
+		try {
+			byte[] dec;
+			dec = Base64.decode(enc);
+
+			// Decode base64 to get bytes
+			// byte[] dec = new sun.misc.BASE64Decoder().decodeBuffer(str);
+			// byte[] dec = Base64Coder.decode(str);
+
+			// Decrypt
+			byte[] utf8 = dcipher.doFinal(dec);
+
+			// Decode using utf-8
+			return new String(utf8, "UTF8");
+
+		} catch (BadPaddingException e) {
+		} catch (IllegalBlockSizeException e) {
+		} catch (UnsupportedEncodingException e) {
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
